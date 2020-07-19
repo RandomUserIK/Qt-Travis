@@ -1,0 +1,25 @@
+language: cpp
+
+compiler: gcc
+
+os: linux
+
+sudo: required
+
+dist: trusty
+
+script:
+  - qmake -r
+  - make
+  - make check
+
+branches:
+    only:
+    - dev
+    - /^feature/*$\
+    - /^refactor/*$\
+    - /^fix/*$\
+
+notifications:
+    email: false
+
