@@ -10,7 +10,7 @@ dist: trusty
 
 script:
   - cd ./test/
-  - qmake -Makefile -Wall
+  - qmake -makefile -Wall
   - make
 
 branches:
