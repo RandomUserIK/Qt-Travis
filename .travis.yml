@@ -12,6 +12,7 @@ script:
   - cd ./test/
   - qmake -makefile -Wall
   - make
+  - bash <(curl -s https://codecov.io/bash) 
 
 branches:
     only:
