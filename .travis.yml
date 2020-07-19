@@ -9,9 +9,9 @@ sudo: required
 dist: trusty
 
 script:
-  - qmake -r
+  - cd ./test/
+  - qmake -Makefile -Wall
   - make
-  - make check
 
 branches:
     only:
