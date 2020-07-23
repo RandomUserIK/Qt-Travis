@@ -11,7 +11,7 @@ dist: bionic
 script:
   - cd ./TestLib/
   - mkdir build && cd build
-  - cmake && make
+  - cmake .. && make
   
 # after success:
 #  - bash <(curl -s https://codecov.io/bash) 
