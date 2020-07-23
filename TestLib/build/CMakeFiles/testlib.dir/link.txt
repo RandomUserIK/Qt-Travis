@@ -1,2 +1,0 @@
-/usr/bin/ar qc libtestlib.a  CMakeFiles/testlib.dir/testlib_autogen/mocs_compilation.cpp.o CMakeFiles/testlib.dir/src/testlib.cpp.o
-/usr/bin/ranlib libtestlib.a

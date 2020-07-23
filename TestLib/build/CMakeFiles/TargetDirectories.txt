@@ -1,4 +1,0 @@
-/home/xkovac/Documents/Qt-Travis/TestLib/build/CMakeFiles/rebuild_cache.dir
-/home/xkovac/Documents/Qt-Travis/TestLib/build/CMakeFiles/testlib.dir
-/home/xkovac/Documents/Qt-Travis/TestLib/build/CMakeFiles/edit_cache.dir
-/home/xkovac/Documents/Qt-Travis/TestLib/build/CMakeFiles/testlib_autogen.dir
