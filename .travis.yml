@@ -8,6 +8,10 @@ sudo: required
 
 dist: bionic
 
+before_install:
+	- sudo apt-get update -qq
+ 	- sudo apt-get install -qq qt5-dev-tools
+
 script:
   - cd ./TestLib/
   - mkdir build && cd build
