@@ -27,7 +27,7 @@ branches:
     - dev
     - /^feature/*$\
     - /^refactor/*$\
-    - /^fix/*$\
+#    - /^fix/*$\
 
 notifications:
     email: false
