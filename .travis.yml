@@ -13,6 +13,12 @@ addons:
      - qtbase5-dev
      - qtbase5-dev-tools
      - qt5-default
+     - cuda
+     - cudnn
+     - opencv
+     - arrayfire
+     - boost
+     - tensorflow-opt-cuda
 
 script:
   - cd ./TestLib/
@@ -27,7 +33,7 @@ branches:
     - dev
     - /^feature/*$\
     - /^refactor/*$\
-#    - /^fix/*$\
+    - /^fix/*$\
 
 notifications:
     email: false
