@@ -22,7 +22,7 @@ branches:
     only:
     - dev
     - /^feature/*$\
-    - /^refactor/*$\
+#    - /^refactor/*$\
 #    - /^fix/*$\
 
 notifications:
