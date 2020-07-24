@@ -1,0 +1,34 @@
+language: cpp
+
+compiler: gcc
+
+os: linux
+
+dist: bionic
+
+addons:
+  apt:
+    packages:
+     - cmake
+     - qtbase5-dev
+     - qtbase5-dev-tools
+     - qt5-default
+
+script:
+  - cd ./TestLib/
+  - mkdir build && cd build
+  - cmake .. && make
+  
+# after success:
+#  - bash <(curl -s https://codecov.io/bash) 
+
+branches:
+    only:
+    - dev
+    - /^feature/*$\
+    - /^refactor/*$\
+    - /^fix/*$\
+
+notifications:
+    email: false
+
