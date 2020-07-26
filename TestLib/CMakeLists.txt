@@ -29,6 +29,9 @@ set(ENABLE_TESTS ${TEST_LIB_ENABLE_TESTS})
 set(ENABLE_COVERAGE ${TEST_LIB_ENABLE_COVERAGE})
 
 find_package(Qt5 COMPONENTS Core REQUIRED)
+find_package(Qt5Gui REQUIRED)
+find_package(OpenCV REQUIRED)
+find_package(ArrayFire REQUIRED)
 
 
 add_library(projectwarnings INTERFACE)
@@ -63,20 +66,33 @@ endif()
 set(TEST_LIB_SOURCES
     src/testlib.cpp
 )
-add_library(testlib ${TEST_LIB_SOURCES})
+add_library(testlib SHARED ${TEST_LIB_SOURCES})
+
 target_link_libraries(testlib PRIVATE projectwarnings)
 target_link_libraries(testlib PRIVATE Qt5::Core)
+target_link_libraries(testlib PRIVATE Qt5::Gui)
+target_link_libraries(testlib PRIVATE ${OpenCV_LIBS})
+target_link_libraries(testlib PRIVATE ArrayFire::af)
+
 target_include_directories(testlib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/)
+
 target_compile_definitions(testlib PRIVATE TESTLIB_LIBRARY)
 
 if (ENABLE_TESTS)
 
     set(TEST_LIB_TEST_SOURCES
+        test/libtestlib/testlib.cpp
         test/main.cpp
     )
     add_subdirectory(external/Catch2)
     add_executable(unittests ${TEST_LIB_TEST_SOURCES})
-    target_link_libraries(unittests libyantl Catch2::Catch2)
+    target_include_directories(unittests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/)
+    target_link_libraries(unittests testlib
+                                    Catch2::Catch2
+            Qt5::Core
+            Qt5::Gui
+            ${OpenCV_LIBS}
+            ArrayFire::af)
 
     include(CTest)
     enable_testing()
