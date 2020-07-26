@@ -73,3 +73,6 @@ Thumbs.db
 
 # build files
 build/
+
+# Idea - CLion
+.idea/
