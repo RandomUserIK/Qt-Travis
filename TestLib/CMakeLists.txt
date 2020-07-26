@@ -72,7 +72,7 @@ target_link_libraries(testlib PRIVATE projectwarnings)
 target_link_libraries(testlib PRIVATE Qt5::Core)
 target_link_libraries(testlib PRIVATE Qt5::Gui)
 target_link_libraries(testlib PRIVATE ${OpenCV_LIBS})
-target_link_libraries(testlib PRIVATE ArrayFire::af)
+target_link_libraries(testlib PRIVATE ${ArrayFire_DIR})
 
 target_include_directories(testlib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/)
 
