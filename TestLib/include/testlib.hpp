@@ -20,7 +20,7 @@
 
 #include "af/array.h"
 #include "arrayfire.h"
-#include "opencv4/opencv2/core.hpp"
+#include "opencv2/core.hpp"
 
 class TESTLIB_EXPORT TestLib
 {

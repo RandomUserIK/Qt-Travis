@@ -89,10 +89,10 @@ if (ENABLE_TESTS)
     target_include_directories(unittests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/)
     target_link_libraries(unittests testlib
                                     Catch2::Catch2
-            Qt5::Core
-            Qt5::Gui
-            ${OpenCV_LIBS}
-            ArrayFire::af)
+                                    Qt5::Core
+                                    Qt5::Gui
+                                    ${OpenCV_LIBS}
+                                    ${ArrayFire_DIR})
 
     include(CTest)
     enable_testing()
