@@ -21,18 +21,20 @@ option(
 
 option(
     TEST_LIB_ENABLE_COVERAGE
-    "Specifies if coverage files should be generated. Only works on linux, with tests turned on."
+    "Specifies if coverage files should be generated. Only works on Linux, with tests turned on."
     OFF
 )
 
 set(ENABLE_TESTS ${TEST_LIB_ENABLE_TESTS})
 set(ENABLE_COVERAGE ${TEST_LIB_ENABLE_COVERAGE})
 
-find_package(Qt5 COMPONENTS Core REQUIRED)
+find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
-find_package(OpenCV REQUIRED)
+find_package(OpenCV REQUIRED COMPONENTS opencv_core
+                                        opencv_imgproc
+                                        opencv_imgcodecs
+                                        opencv_highgui)
 find_package(ArrayFire REQUIRED)
-
 
 add_library(projectwarnings INTERFACE)
 
@@ -66,15 +68,24 @@ endif()
 set(TEST_LIB_SOURCES
     src/testlib.cpp
 )
-add_library(testlib SHARED ${TEST_LIB_SOURCES})
 
+add_library(testlib SHARED ${TEST_LIB_SOURCES})
+target_include_directories(testlib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/)
+
+# projectwarnings
 target_link_libraries(testlib PRIVATE projectwarnings)
+
+# Qt
 target_link_libraries(testlib PRIVATE Qt5::Core)
 target_link_libraries(testlib PRIVATE Qt5::Gui)
-target_link_libraries(testlib PRIVATE ${OpenCV_LIBS})
-target_link_libraries(testlib PRIVATE ${ArrayFire_DIR})
 
-target_include_directories(testlib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/)
+# OpenCV
+include_directories(${OpenCV_INCLUDE_DIRS})
+target_link_libraries(testlib PRIVATE ${OpenCV_LIBS})
+
+# ArrayFire
+include_directories(${ArrayFire_INCLUDE_DIRS})
+target_link_libraries(testlib PRIVATE ${ArrayFire_LIBRARIES})
 
 target_compile_definitions(testlib PRIVATE TESTLIB_LIBRARY)
 
@@ -86,13 +97,17 @@ if (ENABLE_TESTS)
     )
     add_subdirectory(external/Catch2)
     add_executable(unittests ${TEST_LIB_TEST_SOURCES})
+
     target_include_directories(unittests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include/)
+    target_include_directories(unittests PUBLIC ${ArrayFire_INCLUDE_DIRS})
+    target_include_directories(unittests PUBLIC ${OpenCV_INCLUDE_DIRS})
+
     target_link_libraries(unittests testlib
                                     Catch2::Catch2
                                     Qt5::Core
                                     Qt5::Gui
                                     ${OpenCV_LIBS}
-                                    ${ArrayFire_DIR})
+                                    ${ArrayFire_LIBRARIES})
 
     include(CTest)
     enable_testing()

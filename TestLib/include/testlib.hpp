@@ -18,7 +18,6 @@
 #include <QImage>
 #include <QThread>
 
-#include "af/array.h"
 #include "arrayfire.h"
 #include "opencv2/core.hpp"
 

@@ -1,5 +1,4 @@
 #include <catch2/catch.hpp>
-
 #include "testlib.hpp"
 
 TEST_CASE("Addition")
