@@ -25,6 +25,7 @@ addons:
      - libopencv-dev
      - libarrayfire-unified-dev
      - libboost-all-dev
+     - lcov
     
 script:
   - cd ./TestLib/
@@ -33,7 +34,7 @@ script:
   - ./unittests
   
 after success:
-  - bash <(curl -s https://codecov.io/bash) 
+  - bash <(curl -s https://codecov.io/bash) -X gcov 
 
 branches:
     only:

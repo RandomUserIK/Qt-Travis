@@ -114,7 +114,7 @@ if (ENABLE_TESTS)
     include(Catch)
     catch_discover_tests(unittests)
 
-    if (ENABLE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+    if (ENABLE_COVERAGE)
         list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/external/CMake-codecov/cmake")
         find_package(codecov)
 
