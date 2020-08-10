@@ -1,6 +1,5 @@
-[submodule "TestLib/external/externals/CMake-codecov"]
-	path = TestLib/external/externals/CMake-codecov
+[submodule "TestLib/external/CMake-codecov"]
+	path = TestLib/external/CMake-codecov
 	url = git://github.com/RWTH-HPC/CMake-codecov.git
-[submodule "TestLib/external/Catch2"]
-	path = TestLib/external/Catch2
-	url = git@github.com:catchorg/Catch2.git
+	
+
