@@ -16,13 +16,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 option(
     TEST_LIB_ENABLE_TESTS
     "Specifies if unit tests should be built and added to ctest"
-    OFF
+    ON
 )
 
 option(
     TEST_LIB_ENABLE_COVERAGE
     "Specifies if coverage files should be generated. Only works on Linux, with tests turned on."
-    OFF
+    ON
 )
 
 set(ENABLE_TESTS ${TEST_LIB_ENABLE_TESTS})
@@ -104,8 +104,6 @@ if (ENABLE_TESTS)
 
     target_link_libraries(unittests testlib
                                     Catch2::Catch2
-                                    Qt5::Core
-                                    Qt5::Gui
                                     ${OpenCV_LIBS}
                                     ${ArrayFire_LIBRARIES})
 

@@ -1,27 +1,12 @@
 #ifndef TESTLIB_HPP
 #define TESTLIB_HPP
 
-#include "include/TestLib_global.hpp"
-
 #include <iostream>
-
-#include <QObject>
-#include <QDebug>
-#include <QVector>
-#include <QMap>
-#include <QElapsedTimer>
-#include <QDir>
-#include <QString>
-#include <QFileInfo>
-#include <QListIterator>
-#include <QVectorIterator>
-#include <QImage>
-#include <QThread>
 
 #include "arrayfire.h"
 #include "opencv2/core.hpp"
 
-class TESTLIB_EXPORT TestLib
+class TestLib
 {
 public:
     TestLib() { };
