@@ -42,7 +42,7 @@ if (MSVC)
     target_compile_options(
         projectwarnings
         INTERFACE
-        /W4
+        /W4 # all reasonable warnings
     )
 else()
     target_compile_options(
@@ -115,16 +115,34 @@ if (ENABLE_TESTS)
     catch_discover_tests(unittests)
 
     if (ENABLE_COVERAGE)
-        list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/external/CMake-codecov/cmake")
-        find_package(codecov)
+#        add_subdirectory(external/CMake-codecov)
+#        list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/external/CMake-codecov/cmake")
+#        find_package(codecov)
+#
+#        add_coverage(testlib)
+#        add_coverage(unittests)
+#
+#        list(APPEND LCOV_REMOVE_PATTERNS "/usr/")
+#        list(APPEND LCOV_REMOVE_PATTERNS "'${PROJECT_SOURCE_DIR}/test/*'")
+#        list(APPEND LCOV_REMOVE_PATTERNS "'${PROJECT_SOURCE_DIR}/external/*'")
+#
+#        coverage_evaluate()
 
-        add_coverage(testlib)
-        add_coverage(unittests)
+        # set(CMAKE_CXX_FLAGS "--coverage")
 
-        list(APPEND LCOV_REMOVE_PATTERNS "/usr/")
-        list(APPEND LCOV_REMOVE_PATTERNS "'${PROJECT_SOURCE_DIR}/test/*'")
-        list(APPEND LCOV_REMOVE_PATTERNS "'${PROJECT_SOURCE_DIR}/external/*'")
+        add_library(coverage_config INTERFACE)
 
-        coverage_evaluate()
+        target_compile_options(coverage_config INTERFACE
+        -O0        # no optimization
+        -g         # generate debug info
+        --coverage # sets all required flags
+        )
+
+        if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.13)
+            target_link_options(coverage_config INTERFACE --coverage)
+        else()
+            target_link_libraries(coverage_config INTERFACE --coverage)
+        endif()
+
     endif()
 endif()
