@@ -30,6 +30,7 @@ script:
   - cd ./TestLib/
   - mkdir build && cd build
   - cmake .. && make
+  - ./unittests
   
 after success:
   - bash <(curl -s https://codecov.io/bash) 
