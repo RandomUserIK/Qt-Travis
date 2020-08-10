@@ -14,13 +14,13 @@ addons:
      - qtbase5-dev
      - qtbase5-dev-tools
      - qt5-default
-     - libcuda-10.1
+     - libcuda-10.2
      - libopencv-dev
      - libarrayfire-unified-dev
      - libboost-all-dev
      
 git:
-	submodules: false
+  submodules: false
 	
 before_install:
 	- sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
